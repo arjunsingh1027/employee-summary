@@ -1,0 +1,27 @@
+{
+  "name": "employee-summary",
+  "version": "1.0.0",
+  "description": "This application will ask the user to fill out information about the team manager and other team members, the engineers and interns. The user can create any number of team members that can be a mix of engineers and interns.",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arjunsingh1027/employee-summary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arjunsingh1027/employee-summary/issues"
+  },
+  "homepage": "https://github.com/arjunsingh1027/employee-summary#readme"
+}
