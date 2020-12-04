@@ -40,7 +40,7 @@ function appMenu() {
                     const pass = answer.match(
                         /^[1-9]\d*$/
                     );
-                    if(pass) {
+                    if (pass) {
                         return true;
                     } return "please enter a number greater than 0"
                 }
@@ -52,7 +52,7 @@ function appMenu() {
                 // RegEx validation for numbers
                 validate: function (answer) {
                     const pass = answer.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
-                    if(pass) {
+                    if (pass) {
                         return true;
                     } return "please enter a valid email"
                 }
@@ -66,7 +66,7 @@ function appMenu() {
                     const pass = answer.match(
                         /^[1-9]\d*$/
                     );
-                    if(pass) {
+                    if (pass) {
                         return true;
                     } return "please enter a number greater than 0"
                 }
@@ -81,7 +81,29 @@ function appMenu() {
     };
 
     function createTeam() {
-
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "teamChoice",
+                message: "which type of team member would you like to add?",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                    "I dont want to add another memeber"
+                ]
+            }
+        ]).then(userChoice => {
+            switch (userChoice.teamChoice) {
+                case "Engineer":
+                    createEngineer();
+                    break;
+                case "Intern":
+                    createIntern();
+                    break;
+                default:
+                    buildTeam();
+            }
+        })
     }
 
     function createEngineer() {
