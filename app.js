@@ -89,7 +89,7 @@ function appMenu() {
                 choices: [
                     "Engineer",
                     "Intern",
-                    "I dont want to add another memeber"
+                    "I dont want to add another member"
                 ]
             }
         ]).then(userChoice => {
@@ -135,7 +135,7 @@ function appMenu() {
             },
             {
                 type: "input",
-                name: "egineerEmail",
+                name: "engineerEmail",
                 message: "What is your engineer's email?",
                 // RegEx validation for email
                 validate: function (answer) {
@@ -193,7 +193,7 @@ function appMenu() {
             },
             {
                 type: "input",
-                name: "egineerEmail",
+                name: "internEmail",
                 message: "What is your intern's email?",
                 // RegEx validation for email
                 validate: function (answer) {
@@ -223,9 +223,12 @@ function appMenu() {
     }
 
     function buildTeam() {
-
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
+        }
+        fs.writeFileSync(outputPath, render(teamMembers), "utf-8")
     }
-
+    createManager();
 }
 
 appMenu();
