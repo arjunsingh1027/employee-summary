@@ -107,11 +107,119 @@ function appMenu() {
     }
 
     function createEngineer() {
-
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "engineerName",
+                message: "What is your engineer's name?",
+                // validate name input
+                validate: function (answer) {
+                    if (answer !== "") {
+                        return true;
+                    } return "please enter a name"
+                }
+            },
+            {
+                type: "input",
+                name: "engineerId",
+                message: "What is your engineer's ID?",
+                // RegEx validation for numbers
+                validate: function (answer) {
+                    const pass = answer.match(
+                        /^[1-9]\d*$/
+                    );
+                    if (pass) {
+                        return true;
+                    } return "please enter a number greater than 0"
+                }
+            },
+            {
+                type: "input",
+                name: "egineerEmail",
+                message: "What is your engineer's email?",
+                // RegEx validation for email
+                validate: function (answer) {
+                    const pass = answer.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
+                    if (pass) {
+                        return true;
+                    } return "please enter a valid email"
+                }
+            },
+            {
+                type: "input",
+                name: "engineerGithub",
+                message: "What is your engineer's GitHub username?",
+                // RegEx validation for numbers
+                validate: function (answer) {
+                    if (answer !== "") {
+                        return true;
+                    } return "please enter a GitHub username"
+                }
+            }
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            teamMembers.push(engineer);
+            teamIds.push(answers.engineerId);
+            createTeam();
+        });
     }
 
     function createIntern() {
-
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "What is your intern's name?",
+                // validate name input
+                validate: function (answer) {
+                    if (answer !== "") {
+                        return true;
+                    } return "please enter a name"
+                }
+            },
+            {
+                type: "input",
+                name: "internId",
+                message: "What is your intern's ID?",
+                // RegEx validation for numbers
+                validate: function (answer) {
+                    const pass = answer.match(
+                        /^[1-9]\d*$/
+                    );
+                    if (pass) {
+                        return true;
+                    } return "please enter a number greater than 0"
+                }
+            },
+            {
+                type: "input",
+                name: "egineerEmail",
+                message: "What is your intern's email?",
+                // RegEx validation for email
+                validate: function (answer) {
+                    const pass = answer.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
+                    if (pass) {
+                        return true;
+                    } return "please enter a valid email"
+                }
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What is your intern's school?",
+                // RegEx validation
+                validate: function (answer) {
+                    if (answer !== "") {
+                        return true;
+                    } return "please enter a school"
+                }
+            }
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            teamMembers.push(intern);
+            teamIds.push(answers.internId);
+            createTeam();
+        });
     }
 
     function buildTeam() {
