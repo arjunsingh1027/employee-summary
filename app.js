@@ -13,6 +13,93 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const teamMembers = [];
+const teamIds = [];
+
+function appMenu() {
+    function createManager() {
+        console.log("Build your team!");
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "managerName",
+                message: "What is your manager's name?",
+                // validate name input
+                validate: function (answer) {
+                    if (answer !== "") {
+                        return true;
+                    } return "please enter a name"
+                }
+            },
+            {
+                type: "input",
+                name: "managerId",
+                message: "What is your manager's ID?",
+                // RegEx validation for numbers
+                validate: function (answer) {
+                    const pass = answer.match(
+                        /^[1-9]\d*$/
+                    );
+                    if(pass) {
+                        return true;
+                    } return "please enter a number greater than 0"
+                }
+            },
+            {
+                type: "input",
+                name: "managerEmail",
+                message: "What is your manager's email?",
+                // RegEx validation for numbers
+                validate: function (answer) {
+                    const pass = answer.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
+                    if(pass) {
+                        return true;
+                    } return "please enter a valid email"
+                }
+            },
+            {
+                type: "input",
+                name: "managerOfficeNumber",
+                message: "What is your manager's office number?",
+                // RegEx validation for numbers
+                validate: function (answer) {
+                    const pass = answer.match(
+                        /^[1-9]\d*$/
+                    );
+                    if(pass) {
+                        return true;
+                    } return "please enter a number greater than 0"
+                }
+            }
+        ]).then(answers => {
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+            teamMembers.push(manager);
+            teamIds.push(answers.managerId);
+            createTeam()
+        });
+
+    };
+
+    function createTeam() {
+
+    }
+
+    function createEngineer() {
+
+    }
+
+    function createIntern() {
+
+    }
+
+    function buildTeam() {
+
+    }
+
+    createManager();
+}
+
+appMenu();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
