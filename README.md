@@ -14,7 +14,7 @@ The application can be used by using the `node app.js` command.
 
 ## Usage
 
-Demo Video
+Demo Video(https://youtu.be/vXQImmvTcvg)
 
 Run the application with `node app.js`. It will then prompt the user to fill out the questions about the managers' and employees' information.
 
